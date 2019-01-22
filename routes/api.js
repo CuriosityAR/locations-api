@@ -7,7 +7,7 @@ const env        = require('../env.json')
 
 router.get('/get/locations', (req, res) => {
     let locations = []
-    let con = mysql.createConnection(env)
+    let con = mysql.createConnection(env.db)
 
     res.setHeader('Content-Type', 'application/json')
 
@@ -37,7 +37,7 @@ router.get('/get/locations', (req, res) => {
 })
 
 router.post('/post/location', (req, res) => {
-    let con = mysql.createConnection(env)
+    let con = mysql.createConnection(env.db)
 
     con.connect(err => {
         if (err) return res.send(err)

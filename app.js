@@ -2,12 +2,12 @@
 
 const app = require('express')()
 
-app.use((req, res, next) => {
-    console.log('new connection')
+const env = require('./env.json')
 
+app.use((req, res, next) => {
     next()
 })
 
 app.use('/', require('./routes/api.js'))
 
-app.listen(8080, '0.0.0.0')
+app.listen(env.port, env.host)
