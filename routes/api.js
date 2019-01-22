@@ -5,13 +5,14 @@ const mysql      = require('mysql')
 const Geometrics = require('../libs/geometrics')
 const env        = require('../env.json')
 
+const pool = mysql.createPool({
+    ...env.db,
+    connectionLimit: env.connectionLimit
+})
+
 router.get('/get/locations', (req, res) => {
     let locations = []
-    let pool = mysql.createPool({
-        ...env.db,
-        connectionLimit: env.connectionLimit
-    })
-
+    
     res.setHeader('Content-Type', 'application/json')
 
     pool.getConnection((err, con) => {
